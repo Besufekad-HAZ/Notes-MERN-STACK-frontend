@@ -1,43 +1,34 @@
-import { Link } from "react-router-dom";
-import useAuth from "../../hooks/useAuth";
+import { Link } from 'react-router-dom'
+import useAuth from '../../hooks/useAuth'
+import useTitle from '../../hooks/useTitle'
 
 const Welcome = () => {
-  const { username, isManager, isAdmin } = useAuth();
 
-  const date = new Date();
-  const today = new Intl.DateTimeFormat("en-US", {
-    dateStyle: "full",
-    timeStyle: "long",
-  }).format(date);
+    const { username, isManager, isAdmin } = useAuth()
 
-  const content = (
-    <section className="welcome">
-      <p>{today}</p>
+    useTitle(`techNotes: ${username}`)
 
-      <h1>Welcome {username}!</h1>
+    const date = new Date()
+    const today = new Intl.DateTimeFormat('en-US', { dateStyle: 'full', timeStyle: 'long' }).format(date)
 
-      <p>
-        <Link to="/dash/notes">View techNotes</Link>
-      </p>
+    const content = (
+        <section className="welcome">
 
-      <p>
-        <Link to="/dash/notes/new">Add New techNote</Link>
-      </p>
+            <p>{today}</p>
 
-      {(isManager || isAdmin) && (
-        <p>
-          <Link to="/dash/users">View User Settings</Link>
-        </p>
-      )}
+            <h1>Welcome {username}!</h1>
 
-      {(isManager || isAdmin) && (
-        <p>
-          <Link to="/dash/users/new">Add New User</Link>
-        </p>
-      )}
-    </section>
-  );
+            <p><Link to="/dash/notes">View techNotes</Link></p>
 
-  return content;
-};
-export default Welcome;
+            <p><Link to="/dash/notes/new">Add New techNote</Link></p>
+
+            {(isManager || isAdmin) && <p><Link to="/dash/users">View User Settings</Link></p>}
+
+            {(isManager || isAdmin) && <p><Link to="/dash/users/new">Add New User</Link></p>}
+
+        </section>
+    )
+
+    return content
+}
+export default Welcome
