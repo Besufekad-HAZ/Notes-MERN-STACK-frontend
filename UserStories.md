@@ -1,4 +1,4 @@
-# User Stories for techNotes
+# User Stories for techNotes list are!
 
 1. [x] Replace current sticky note system
 2. [x] Add a public facing page with basic contact info
